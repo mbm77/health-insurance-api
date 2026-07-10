@@ -1,0 +1,216 @@
+Describe Smoke , Sanity and regression Testing ? why do we need to use this ?
+
+These are different types of software testing used to ensure the stability and functionality of an application at various stages of development and deployment.
+
+1. Smoke Testing
+✅ Definition:
+Smoke testing is a high-level initial test performed after a new build is deployed to check whether the critical functionalities of the application work properly.
+
+✅ Purpose:
+
+To verify that the build is stable enough for further testing.
+To catch major issues early in the development cycle.
+
+✅ Example:
+If you have an e-commerce website, smoke testing would check if:
+
+The website loads.
+Users can log in.
+Product search works.
+Checkout process functions properly.
+
+💡 If the smoke test fails, further testing is halted until the critical issue is fixed.
+
+2. Sanity Testing
+✅ Definition:
+Sanity testing is a focused test performed after minor code changes or bug fixes to ensure that the affected functionalities work as expected.
+
+✅ Purpose:
+
+To verify that a specific bug fix or feature enhancement works without affecting related functionality.
+To avoid unnecessary retesting of unaffected areas.
+✅ Example:
+If a developer fixes a login issue, sanity testing would check:
+
+If the login issue is resolved.
+If the login page still functions properly.
+If user sessions behave correctly.
+💡 Sanity testing is a subset of regression testing and is usually not documented formally.
+
+3. Regression Testing
+✅ Definition:
+Regression testing ensures that recent changes (bug fixes, new features, enhancements) have not negatively impacted the existing functionality of the application.
+
+✅ Purpose:
+
+To check that previously working functionality is still intact after modifications.
+To identify unintended side effects caused by code changes.
+✅ Example:
+If a new "Wishlist" feature is added to an e-commerce site, regression testing would verify:
+
+Existing features like login, search, checkout, and payments still work.
+The newly added "Wishlist" feature functions correctly.
+💡 Regression testing is automated in large projects to save time and ensure consistency.
+
+Why Do We Need These Testing Types?
+✅ Smoke Testing - To avoid wasting time testing an unstable build.
+✅ Sanity Testing - To quickly verify bug fixes or minor changes.
+✅ Regression Testing - To ensure old functionalities are not broken by new updates.
+
+💡 Together, these testing types help deliver high-quality, bug-free software while saving time and effort.
+
+
+How to Implement a Pre-Check Test Case?
+🔹 Option 1: API Pre-Check (For Web & API Testing)
+
+Make a simple GET request to the homepage or health check endpoint.
+If response 200 OK, proceed with smoke tests.
+If response not 200, stop execution & log failure.
+
+@Test
+public void preCheck_HomePage_Availability() {
+    given()
+    .when().get("https://yourapp.com")
+    .then().statusCode(200);  // If not 200, fail early
+}
+
+🔹 Option 2: UI Pre-Check (For Selenium Tests)
+
+Open the browser and verify if a key element (e.g., login button) is visible.
+
+@Test
+public void preCheck_UI_Loading() {
+    WebDriver driver = new ChromeDriver();
+    driver.get("https://yourapp.com");
+
+    boolean isLoaded = driver.findElement(By.id("loginButton")).isDisplayed();
+    Assert.assertTrue(isLoaded, "Website did not load properly!");
+
+    driver.quit();
+}
+
+Best Practice in CI/CD Pipelines
+1️⃣ Step 1: Run Pre-Check Test Case (API/UI-based).
+2️⃣ If Pre-Check Passes: Run full automated smoke test suite.
+3️⃣ If Pre-Check Fails: Stop execution and notify the team.
+
+
+Question:-
+
+mvn clean install vs mvn test – What’s the Difference?
+
+What It Does:
+
+1️⃣ Cleans the project (removes target/ directory)
+2️⃣ Compiles the source code
+3️⃣ Runs unit & integration tests (mvn test is included)
+4️⃣ Packages the project (JAR/WAR file)
+5️⃣ Installs the artifact in the local Maven repository (.m2/repository)
+When to Use?
+
+✔ Before deploying the application
+✔ When you need a fresh build
+✔ To make the artifact available for other projects
+
+
+Note:
+Setting values at runtime 	
+mvn test -Denv=QA -Durl=https://example.com
+
+<properties>
+    <environment>${env}</environment>  <!-- ✅ Uses -Denv if provided, otherwise null -->
+    <base.url>${url}</base.url>  <!-- ✅ Uses -Durl if provided, otherwise null -->
+</properties>
+
+	<systemPropertyVariables>
+                    <env>${environment}</env>  <!-- ✅ Uses default "qa" or -Denv -->
+                    <url>${base.url}</url>  <!-- ✅ Uses default URL or -Durl -->
+                </systemPropertyVariables>
+
+get values as:
+	String env = System.getProperty("env", "DEV");  // ✅ Default "DEV" if not set
+       	 String url = System.getProperty("url", "https://default.com");
+
+
+NOTE:
+Yes! You Can Include Multiple testng.xml Files in the Surefire Plugin in pom.xml
+
+	<suiteXmlFiles>
+                    <suiteXmlFile>src/test/resources/testng-smoke.xml</suiteXmlFile>
+                    <suiteXmlFile>src/test/resources/testng-regression.xml</suiteXmlFile>
+                </suiteXmlFiles>
+
+This will execute both testng-smoke.xml and testng-regression.xml in sequence.
+
+Modify pom.xml to Support Multiple TestNg Files Dynamically
+
+	<suiteXmlFiles>
+                    <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>  
+                </suiteXmlFiles>
+
+mvn test -DsuiteXmlFile=src/test/resources/testng-smoke2.xml,src/test/resources/testng-regression2.xml
+
+**Running Multiple Dynamic testng.xml Files + Default
+	<suiteXmlFiles>
+                    <suiteXmlFile>src/test/resources/testng-default.xml,${suiteXmlFile}</suiteXmlFile>
+                </suiteXmlFiles>
+mvn test -DsuiteXmlFile=src/test/resources/testng-smoke.xml,src/test/resources/testng-regression.xml
+
+Runs:
+
+    testng-smoke.xml
+    testng-regression.xml
+    testng-default.xml (always included)
+
+Note:
+
+How WebDriver Works Internally
+Step-by-Step Flow:
+
+1️⃣ Selenium Code Executes in Java/Python/etc.
+2️⃣ WebDriver Sends Commands to Browser Driver
+3️⃣ Browser Driver Translates Commands to Browser-Specific Actions
+4️⃣ Browser Interacts with the Web Page and Updates the DOM
+5️⃣ Response Sent Back to WebDriver & Selenium Code
+
+
+	Step					What Happens?
+1️⃣ Selenium Code Runs			You call findElement(), click(), etc. in your test script.
+2️⃣ WebDriver Sends HTTP Requests		Selenium WebDriver converts commands into JSON-based HTTP requests.
+3️⃣ Browser Driver Receives Commands	chromedriver, geckodriver, etc. take the requests and send them to the browser.
+4️⃣ Browser Executes Commands		The browser finds elements, clicks buttons, types into fields, etc.
+5️⃣ Browser Sends Response			WebDriver receives results (Success, NoSuchElementException, etc.).
+
+
+Does JavaScriptExecutor Interact with the DOM the Same Way as WebDriver?
+
+✔ No, JavaScriptExecutor (executeScript()) interacts with the DOM differently than WebDriver.
+✔ JavaScriptExecutor is FASTER because it SKIPS browser driver communication.
+✔ It directly executes JavaScript inside the browser’s JavaScript engine (like Chrome’s V8 or Firefox’s SpiderMonkey).
+
+
+NOTE:
+
+Key Differences: WebDriver vs. JavaScriptExecutor (How They Interact with the DOM)
+
+
+Feature						WebDriver (findElement())									JavaScriptExecutor (executeScript())
+How It Works				Uses WebDriver Protocol (sends commands to browser driver)					Directly runs JavaScript inside the browser
+Speed					❌ Slower (Communicates via browser driver)							✅ Faster (No WebDriver communication)
+Visibility Check				✅ Ensures element is visible & interactable							❌ Bypasses visibility checks
+Interacts with Disabled/Hidden Elements?	❌ No (Respects real UI behavior)								✅ Yes (Forces interaction)
+Supports Dynamic Updates?			✅ Yes, but may need WebDriverWait								✅ Yes, executes JS immediately
+Polling Interval (Waiting Mechanism)		Uses WebDriverWait for waiting								No waiting, executes instantly
+
+Note:
+How JavaScriptExecutor Skips WebDriver Steps?
+
+How WebDriver Protocol Works (Step-by-Step Communication Flow) ?
+
+
+
+
+
+
+
+

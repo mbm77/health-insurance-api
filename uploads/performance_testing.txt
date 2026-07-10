@@ -1,0 +1,52 @@
+
+
+PERFORMANCE TESTING:
+------------------------------------------
+------------------------------------------
+
+SLA (Service Level Agreement) in API performance defines the expected performance and reliability standards for an API. It includes measurable performance metrics such as:  
+
+### **1. Response Time**
+   - Maximum allowable response time for an API request.  
+   - Example: **API must respond within 200ms for 95% of requests.**  
+Response Time = Latency + Server Processing Time + Network Delay (Back to Client)
+
+### **2. Throughput (Requests per Second - RPS)**
+   - The number of requests the API can handle per second.  
+   - Example: **API should support 1000 requests per second with 99.9% uptime.**  
+
+### **3. Error Rate**
+   - The percentage of failed API requests over a given period.  
+   - Example: **API error rate should not exceed 0.5%.**  
+
+### **4. Uptime (Availability)**
+   - The percentage of time the API should be available.  
+   - Example: **99.99% uptime per month.**  
+
+### **5. Latency**
+   - The time taken to process and respond to a request.  
+   - Example: **P95 latency should be below 500ms.**  
+The time taken for a request to travel from the client to the server.
+
+
+### **6. Concurrency Limit**
+   - The number of concurrent users or requests the API can handle without degradation.  
+   - Example: **API should handle 500 concurrent users with stable performance.**  
+
+### **7. Rate Limits (Throttling)**
+   - The maximum number of requests a client can send in a given time frame.  
+   - Example: **100 requests per minute per user.**  
+
+These SLA metrics are essential for performance testing in **JMeter** to validate API performance. Would you like to configure JMeter to test these SLAs?
+
+1. Load Testing
+	API should handle 1000 concurrent users smoothly.
+2. Stress Testing
+	API should not crash with 5000+ users.
+3. Spike Testing
+	Handling sudden traffic increase from 100 to 5000 users in seconds.
+4. Endurance (Soak) Testing
+	API should work 24 hours continuously without memory leaks.
+5. Volume Testing
+	API should handle 1 million records in the database efficiently.
+

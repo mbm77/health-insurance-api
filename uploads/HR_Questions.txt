@@ -1,0 +1,52 @@
+1.Are you available for an interview on [Date & Time]?
+"Yes, I am available on [date] at [time]. Please confirm the details, and let me know if I need to prepare anything."
+
+📌 Best Answer (If Not Available):
+"Unfortunately, I am not available at that time. However, I am available on [alternative date & time]. Please let me know if that works for you."
+
+2. "What is your expected salary?
+"Based on my 6 years of experience in Automation Testing, along with my expertise in [Java, Selenium, API Testing, etc.], I am looking for a salary range of ₹12.5 – 14 LPA. However, I am open to discussion based on the total compensation package 
+
+3.Is Your Expected Salary Negotiable?
+"I have researched market standards and based on my 6 years of experience, I believe my expectation of ₹12.5 – 14 LPA is fair. However, I am open to a discussion if needed."
+
+4.What is your current salary, and what hike are you expecting?
+My current salary is ₹7.8 LPA, and based on market standards and my experience, I am looking for a competitive hike in the range of [60-65%].
+
+5.What is your notice period?
+My notice period is [30 days], but I am open to an early joining if required and negotiable with my current employer
+
+6.Why are you interested in this role?
+Yes,I am actively exploring opportunities that match my skills and long-term career goals.
+
+7.Are you open to remote work or relocation?
+I am open to both remote and hybrid work models
+
+8.Why are you looking for a change?
+I have gained valuable experience in my current role, but I am looking for new challenges where I can enhance my test automation, API testing, and CI/CD integration skills. I am particularly interested in working on advanced automation projects and contributing to a dynamic team."
+
+9.Do you require sponsorship or work authorization?
+I currently require visa sponsorship to work in [Country]. Is your company open to sponsorship?
+
+10. Are you in notice period?”
+Yes, I’m currently serving my notice period. My last working day is [date], so I’ll be available to join from [joining date].
+No, I’m not in my notice period yet. However, I can resign as soon as I receive an offer. My official notice period is [X weeks/months].
+I’ve already completed my notice period and am available to join immediately.
+
+"Yes, I’m currently working with Sparkviz Technologies. They are both my payroll and project company. I’m directly involved in their client-facing projects related to enterprise applications and automation solutions."
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
