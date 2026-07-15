@@ -1,20 +1,16 @@
-package com.mbm.filemanagement;
+package com.mbm.healthinsurance;
 
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
-import org.springframework.security.crypto.password.PasswordEncoder;
-
-import com.mbm.filemanagement.model.User;
-import com.mbm.filemanagement.repository.UserRepository;
 
 @SpringBootApplication
-public class FileManagementApiApplication {
+public class HealthInsuranceApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FileManagementApiApplication.class, args);
+        SpringApplication.run(HealthInsuranceApiApplication.class, args);
     }
+    
+    /*
 
     @Bean
     CommandLineRunner init(UserRepository userRepository,
@@ -34,4 +30,6 @@ public class FileManagementApiApplication {
             }
         };
     }
+    
+    */
 }
