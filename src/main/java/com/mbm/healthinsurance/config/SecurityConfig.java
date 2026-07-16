@@ -43,8 +43,10 @@ public class SecurityConfig {
                 	    // Public APIs
                 	    .requestMatchers(
                 	            "/auth/register",
-                	            "/auth/login"
+                	            "/auth/login",
+                	            "/actuator/health"
                 	    ).permitAll()
+                	   
 
                 	    // Only ADMIN can create Admin/Agent/Hospital
                 	    .requestMatchers("/admin/users/**")
