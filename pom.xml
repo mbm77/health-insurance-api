@@ -13,11 +13,11 @@
 	</parent>
 
 	<groupId>com.mbm</groupId>
-	<artifactId>file-management-api</artifactId>
+	<artifactId>health-insurance-api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
-	<name>file-management-api</name>
-	<description>REST API for file upload and download using Spring Boot</description>
+	<name>health-insurance-api</name>
+	<description>REST API for health insurance using Spring Boot</description>
 
 	<properties>
 		<java.version>17</java.version>
