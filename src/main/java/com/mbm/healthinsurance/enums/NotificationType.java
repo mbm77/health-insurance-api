@@ -1,0 +1,24 @@
+package com.mbm.healthinsurance.enums;
+
+public enum NotificationType {
+
+	POLICY_PURCHASE,
+
+	POLICY_RENEWAL,
+
+	CLAIM_SUBMITTED,
+
+	CLAIM_APPROVED,
+
+	CLAIM_REJECTED,
+
+	PAYMENT_SUCCESS,
+
+	PAYMENT_FAILED,
+
+	PAYMENT_REFUNDED,
+	
+	APPEAL,
+	CLAIM_PAYMENT_SUCCESS
+
+}

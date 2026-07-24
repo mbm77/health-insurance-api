@@ -11,11 +11,11 @@ import com.mbm.healthinsurance.dto.request.UpdateAdminUserPasswordRequest;
 import com.mbm.healthinsurance.dto.request.UpdateAdminUserRequest;
 import com.mbm.healthinsurance.dto.request.UpdateAdminUserStatusRequest;
 import com.mbm.healthinsurance.dto.response.AdminUserResponse;
+import com.mbm.healthinsurance.entity.Role;
+import com.mbm.healthinsurance.entity.User;
 import com.mbm.healthinsurance.exception.BadRequestException;
 import com.mbm.healthinsurance.exception.ResourceNotFoundException;
 import com.mbm.healthinsurance.exception.UserAlreadyExistsException;
-import com.mbm.healthinsurance.model.Role;
-import com.mbm.healthinsurance.model.User;
 import com.mbm.healthinsurance.repository.RoleRepository;
 import com.mbm.healthinsurance.repository.UserRepository;
 

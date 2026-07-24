@@ -8,12 +8,12 @@ import com.mbm.healthinsurance.dto.request.CreatePolicyExclusionRequest;
 import com.mbm.healthinsurance.dto.request.UpdatePolicyExclusionRequest;
 import com.mbm.healthinsurance.dto.request.UpdatePolicyExclusionStatusRequest;
 import com.mbm.healthinsurance.dto.response.PolicyExclusionResponse;
+import com.mbm.healthinsurance.entity.Policy;
+import com.mbm.healthinsurance.entity.PolicyExclusion;
 import com.mbm.healthinsurance.enums.ExclusionStatus;
 import com.mbm.healthinsurance.enums.PolicyStatus;
 import com.mbm.healthinsurance.exception.ResourceAlreadyExistsException;
 import com.mbm.healthinsurance.exception.ResourceNotFoundException;
-import com.mbm.healthinsurance.model.Policy;
-import com.mbm.healthinsurance.model.PolicyExclusion;
 import com.mbm.healthinsurance.repository.PolicyExclusionRepository;
 import com.mbm.healthinsurance.repository.PolicyRepository;
 

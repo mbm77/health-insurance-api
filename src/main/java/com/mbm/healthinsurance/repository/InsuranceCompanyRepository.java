@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.mbm.healthinsurance.entity.InsuranceCompany;
 import com.mbm.healthinsurance.enums.CompanyStatus;
-import com.mbm.healthinsurance.model.InsuranceCompany;
 
 public interface InsuranceCompanyRepository extends JpaRepository<InsuranceCompany, Long> {
 

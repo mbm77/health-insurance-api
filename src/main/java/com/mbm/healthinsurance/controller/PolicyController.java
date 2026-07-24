@@ -16,9 +16,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mbm.healthinsurance.dto.request.CreatePolicyRequest;
+import com.mbm.healthinsurance.dto.request.RequestDocument;
 import com.mbm.healthinsurance.dto.request.UpdatePolicyRequest;
 import com.mbm.healthinsurance.dto.request.UpdatePolicyStatusRequest;
+import com.mbm.healthinsurance.dto.response.AdminPendingPolicyResponse;
 import com.mbm.healthinsurance.dto.response.PolicyResponse;
+import com.mbm.healthinsurance.service.CustomerPolicyService;
 import com.mbm.healthinsurance.service.PolicyService;
 
 import jakarta.validation.Valid;
@@ -31,6 +34,7 @@ import lombok.RequiredArgsConstructor;
 public class PolicyController {
 
     private final PolicyService policyService;
+    private final CustomerPolicyService customerPolicyService;
 
     @PostMapping
     public ResponseEntity<PolicyResponse> createPolicy(
@@ -82,6 +86,41 @@ public class PolicyController {
         policyService.deletePolicy(policyId);
 
         return ResponseEntity.noContent().build();
+    }
+    
+    @GetMapping("/pending")
+    public List<AdminPendingPolicyResponse> getPendingPolicies() {
+
+        return customerPolicyService
+                .getPendingPolicies();
+    }
+    
+    @PatchMapping("/{customerPolicyId}/activate")
+    public ResponseEntity<String> activatePolicy(
+
+            @PathVariable Long customerPolicyId) {
+
+        customerPolicyService.activatePolicy(customerPolicyId);
+
+        return ResponseEntity.ok(
+                "Policy activated successfully");
+    }
+    
+    @PatchMapping("/{customerPolicyId}/request-documents")
+    public ResponseEntity<String> requestDocuments(
+
+            @PathVariable Long customerPolicyId,
+
+            @RequestBody RequestDocument request) {
+
+
+        customerPolicyService.requestDocuments(
+                customerPolicyId,
+                request);
+
+
+        return ResponseEntity.ok(
+                "Additional documents requested");
     }
     
 }

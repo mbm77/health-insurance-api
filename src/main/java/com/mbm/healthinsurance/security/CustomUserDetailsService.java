@@ -5,7 +5,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import com.mbm.healthinsurance.model.User;
+import com.mbm.healthinsurance.entity.User;
 import com.mbm.healthinsurance.repository.UserRepository;
 
 import lombok.RequiredArgsConstructor;

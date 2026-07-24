@@ -4,9 +4,10 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.mbm.healthinsurance.entity.Policy;
+import com.mbm.healthinsurance.entity.PolicyCoverage;
 import com.mbm.healthinsurance.enums.CoverageStatus;
 import com.mbm.healthinsurance.enums.PolicyStatus;
-import com.mbm.healthinsurance.model.PolicyCoverage;
 
 public interface PolicyCoverageRepository extends JpaRepository<PolicyCoverage, Long> {
 
@@ -20,4 +21,5 @@ public interface PolicyCoverageRepository extends JpaRepository<PolicyCoverage, 
 	List<PolicyCoverage> findByPolicyStatus(PolicyStatus status);
 
 	List<PolicyCoverage> findByPolicyPolicyIdAndStatus(Long policyId, CoverageStatus status);
+
 }

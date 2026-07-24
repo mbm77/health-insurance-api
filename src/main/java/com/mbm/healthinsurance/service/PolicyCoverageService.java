@@ -8,12 +8,12 @@ import com.mbm.healthinsurance.dto.request.CreatePolicyCoverageRequest;
 import com.mbm.healthinsurance.dto.request.UpdatePolicyCoverageRequest;
 import com.mbm.healthinsurance.dto.request.UpdatePolicyCoverageStatusRequest;
 import com.mbm.healthinsurance.dto.response.PolicyCoverageResponse;
+import com.mbm.healthinsurance.entity.Policy;
+import com.mbm.healthinsurance.entity.PolicyCoverage;
 import com.mbm.healthinsurance.enums.CoverageStatus;
 import com.mbm.healthinsurance.enums.PolicyStatus;
 import com.mbm.healthinsurance.exception.ResourceAlreadyExistsException;
 import com.mbm.healthinsurance.exception.ResourceNotFoundException;
-import com.mbm.healthinsurance.model.Policy;
-import com.mbm.healthinsurance.model.PolicyCoverage;
 import com.mbm.healthinsurance.repository.PolicyCoverageRepository;
 import com.mbm.healthinsurance.repository.PolicyRepository;
 

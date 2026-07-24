@@ -4,8 +4,8 @@ import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.mbm.healthinsurance.entity.PolicyExclusion;
 import com.mbm.healthinsurance.enums.ExclusionStatus;
-import com.mbm.healthinsurance.model.PolicyExclusion;
 
 public interface PolicyExclusionRepository extends JpaRepository<PolicyExclusion, Long> {
 
@@ -17,5 +17,7 @@ public interface PolicyExclusionRepository extends JpaRepository<PolicyExclusion
 	List<PolicyExclusion> findByStatus(ExclusionStatus status);
 
 	List<PolicyExclusion> findByPolicyPolicyIdAndStatus(Long policyId, ExclusionStatus status);
+
+	List<PolicyExclusion> findByPolicyPolicyId(Long policyId);
 
 }

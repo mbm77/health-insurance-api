@@ -6,7 +6,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.mbm.healthinsurance.model.User;
+import com.mbm.healthinsurance.entity.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 

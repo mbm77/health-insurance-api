@@ -1,0 +1,28 @@
+package com.mbm.healthinsurance.entity;
+
+import java.util.Set;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "roles")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long roleId;
+
+    @Column(nullable = false, unique = true)
+    private String roleName;
+
+    private String description;
+
+    @ManyToMany(mappedBy = "roles")
+    private Set<User> users;
+}

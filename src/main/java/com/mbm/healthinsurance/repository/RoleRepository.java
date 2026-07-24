@@ -4,7 +4,7 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.mbm.healthinsurance.model.Role;
+import com.mbm.healthinsurance.entity.Role;
 
 public interface RoleRepository extends JpaRepository<Role, Long> {
 

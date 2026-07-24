@@ -2,6 +2,7 @@ package com.mbm.healthinsurance.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -21,64 +22,70 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SecurityConfig {
 
-    private final JwtAuthenticationFilter jwtAuthenticationFilter;
-    private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
-    private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
+	private final JwtAuthenticationFilter jwtAuthenticationFilter;
+	private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
+	private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+	@Bean
+	public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        return http
-                .csrf(csrf -> csrf.disable())
+		return http
+				.csrf(csrf -> csrf.disable())
 
-                .sessionManagement(session ->
-                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+				.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 
-                .exceptionHandling(exception -> exception
-                        .authenticationEntryPoint(jwtAuthenticationEntryPoint)
-                        .accessDeniedHandler(jwtAccessDeniedHandler))
+				.exceptionHandling(exception -> exception
+						.authenticationEntryPoint(jwtAuthenticationEntryPoint)
+						.accessDeniedHandler(jwtAccessDeniedHandler))
 
-                .authorizeHttpRequests(auth -> auth
+				.authorizeHttpRequests(auth -> auth
 
-                	    // Public APIs
-                	    .requestMatchers(
-                	            "/auth/register",
-                	            "/auth/login",
-                	            "/actuator/health"
-                	    ).permitAll()
-                	   
+						// Public APIs
+						.requestMatchers(
+								"/auth/register",
+								"/auth/login",
+								"/actuator/health")
+						.permitAll()
 
-                	    // Only ADMIN can create Admin/Agent/Hospital
-                	    .requestMatchers("/admin/users/**")
-                	    .hasRole("ADMIN")
+						// Only ADMIN can create Admin/Agent/Hospital
+						.requestMatchers("/admin/users/**")
+						.hasRole("ADMIN")
 
-                	    // All remaining admin APIs
-                	    .requestMatchers("/admin/**")
-                	    .hasRole("ADMIN")
+						// All remaining admin APIs
+						.requestMatchers("/admin/**")
+						.hasRole("ADMIN")
 
-                	    // Customer APIs
-                	    .requestMatchers("/customers/**")
-                	    .hasAnyRole("CUSTOMER", "ADMIN")
+						.requestMatchers(HttpMethod.POST,
+								"/customers/policies/purchase")
+						.hasRole("CUSTOMER")
 
-                	    .anyRequest().authenticated()
-                	)
+						// Customer APIs
+						.requestMatchers("/customers/**")
+						.hasAnyRole("CUSTOMER")
+						
+						.requestMatchers("/admin/notifications/**")
+						.hasRole("ADMIN")
+						.requestMatchers("/customers/notifications/**")
+						.hasRole("CUSTOMER")
 
-                .addFilterBefore(jwtAuthenticationFilter,
-                        UsernamePasswordAuthenticationFilter.class)
+						.anyRequest().authenticated())
 
-                .build();
-    }
+				.addFilterBefore(jwtAuthenticationFilter,
+						UsernamePasswordAuthenticationFilter.class)
 
-    @Bean
-    PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
-    }
+				.build();
+	}
 
-    @Bean
-    AuthenticationManager authenticationManager(
-            AuthenticationConfiguration configuration)
-            throws Exception {
+	@Bean
+	PasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 
-        return configuration.getAuthenticationManager();
-    }
+	@Bean
+	AuthenticationManager authenticationManager(
+			AuthenticationConfiguration configuration)
+			throws Exception {
+
+		return configuration.getAuthenticationManager();
+	}
 }

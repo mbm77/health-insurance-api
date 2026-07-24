@@ -29,4 +29,5 @@ public class CreatePolicyRequest {
     @NotNull(message = "Maximum age is required")
     @Min(value = 0, message = "Maximum age cannot be negative")
     private Integer maxAge;
+    
 }

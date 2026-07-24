@@ -5,8 +5,8 @@ import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
+import com.mbm.healthinsurance.entity.Policy;
 import com.mbm.healthinsurance.enums.PolicyStatus;
-import com.mbm.healthinsurance.model.Policy;
 
 public interface PolicyRepository extends JpaRepository<Policy, Long> {
 
@@ -27,5 +27,9 @@ public interface PolicyRepository extends JpaRepository<Policy, Long> {
 	List<Policy> findByInsurancePlanPlanIdAndStatus(Long planId, PolicyStatus status);
 
 	Optional<Policy> findByPolicyIdAndStatus(Long planId, PolicyStatus status);
+	
+	long countByStatus(PolicyStatus status);
+	
+	
 
 }

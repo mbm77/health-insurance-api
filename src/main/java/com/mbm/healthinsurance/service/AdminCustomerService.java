@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mbm.healthinsurance.dto.request.UpdateAdminCustomerStatusRequest;
 import com.mbm.healthinsurance.dto.request.UpdateCustomerProfileRequest;
 import com.mbm.healthinsurance.dto.response.AdminCustomerResponse;
+import com.mbm.healthinsurance.entity.Customer;
+import com.mbm.healthinsurance.entity.User;
 import com.mbm.healthinsurance.exception.ResourceNotFoundException;
-import com.mbm.healthinsurance.model.Customer;
-import com.mbm.healthinsurance.model.User;
 import com.mbm.healthinsurance.repository.CustomerRepository;
 import com.mbm.healthinsurance.repository.UserRepository;
 

@@ -8,12 +8,12 @@ import com.mbm.healthinsurance.dto.request.CreateInsurancePlanRequest;
 import com.mbm.healthinsurance.dto.request.UpdateInsurancePlanRequest;
 import com.mbm.healthinsurance.dto.request.UpdateInsurancePlanStatusRequest;
 import com.mbm.healthinsurance.dto.response.InsurancePlanResponse;
+import com.mbm.healthinsurance.entity.InsuranceCompany;
+import com.mbm.healthinsurance.entity.InsurancePlan;
 import com.mbm.healthinsurance.enums.CompanyStatus;
 import com.mbm.healthinsurance.enums.PlanStatus;
 import com.mbm.healthinsurance.exception.ResourceAlreadyExistsException;
 import com.mbm.healthinsurance.exception.ResourceNotFoundException;
-import com.mbm.healthinsurance.model.InsuranceCompany;
-import com.mbm.healthinsurance.model.InsurancePlan;
 import com.mbm.healthinsurance.repository.InsuranceCompanyRepository;
 import com.mbm.healthinsurance.repository.InsurancePlanRepository;
 

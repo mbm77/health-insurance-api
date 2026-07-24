@@ -9,9 +9,9 @@ import com.mbm.healthinsurance.dto.request.UpdateCustomerProfileRequest;
 import com.mbm.healthinsurance.dto.response.AdminCustomerResponse;
 import com.mbm.healthinsurance.dto.response.CustomerProfileResponse;
 import com.mbm.healthinsurance.dto.response.MessageResponse;
+import com.mbm.healthinsurance.entity.Customer;
+import com.mbm.healthinsurance.entity.User;
 import com.mbm.healthinsurance.exception.ResourceNotFoundException;
-import com.mbm.healthinsurance.model.Customer;
-import com.mbm.healthinsurance.model.User;
 import com.mbm.healthinsurance.repository.CustomerRepository;
 import com.mbm.healthinsurance.repository.UserRepository;
 
